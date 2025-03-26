@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TambahProduk from "./components/TambahProduk";
 import ProdukList from "./components/ProdukList";
 import { ToastContainer } from "react-toastify";
@@ -6,25 +6,35 @@ import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 
 function App() {
+  // State untuk menu yang aktif
+  const [activeMenu, setActiveMenu] = useState("Admin Panel");
+
   return (
     <div>
       {/* Navbar */}
       <nav className="navbar">
         <div className="container">
-          <h2 className="logo">Intaris</h2>
+          <h2 className="logo">Intaristaurant</h2>
           <ul className="menu">
-            <li><a href="#" className="active">Beranda</a></li>
-            <li><a href="#">Produk</a></li>
-            <li><a href="#">Tentang</a></li>
-            <li><a href="#">Kontak</a></li>
+            {["Admin Panel", "Home", "About", "Order Now", "Contact"].map((menu) => (
+              <li key={menu}>
+                <a
+                  href="#"
+                  className={activeMenu === menu ? "active" : ""}
+                  onClick={() => setActiveMenu(menu)}
+                >
+                  {menu}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </nav>
 
       {/* Hero Section */}
       <header className="hero">
-        <h1>Selamat Datang di Intaris Shop</h1>
-        <p>Temukan produk berkualitas dengan harga terbaik</p>
+        <h1>Welcome to Intaristaurant</h1>
+        <p>Savor delicious flavors at the best prices!</p>
       </header>
 
       {/* Konten */}

@@ -4,13 +4,13 @@ import { toast } from "react-toastify";
 
 function TambahProduk() {
   const [nama, setNama] = useState("");
-  const [harga, setHarga] = useState("");
+  const [Price, setPrice] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!nama || !harga) {
-      toast.error("Nama dan Harga wajib diisi!");
+    if (!nama || !Price) {
+      toast.error("Nama dan Price wajib diisi!");
       return;
     }
 
@@ -18,11 +18,11 @@ function TambahProduk() {
     if (!isConfirmed) return;
 
     axios
-      .post("http://localhost:3001/produk", { nama, harga })
+      .post("http://localhost:3001/produk", { nama, Price })
       .then(() => {
         toast.success("Produk berhasil ditambah!");
         setNama("");
-        setHarga("");
+        setPrice("");
       })
       .catch(() => {
         toast.error("Gagal menambah produk!");
@@ -31,10 +31,10 @@ function TambahProduk() {
 
   return (
     <div className="mb-4">
-      <h2>Tambah Produk</h2>
+      <h2>Add Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-2">
-          <label>Nama Produk:</label>
+          <label>Product Name:</label>
           <input
             type="text"
             className="form-control"
@@ -43,12 +43,12 @@ function TambahProduk() {
           />
         </div>
         <div className="mb-2">
-          <label>Harga:</label>
+          <label>Price:</label>
           <input
             type="number"
             className="form-control"
-            value={harga}
-            onChange={(e) => setHarga(e.target.value)}
+            value={Price}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
         <button 

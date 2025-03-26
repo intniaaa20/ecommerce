@@ -65,14 +65,14 @@ function ProdukList() {
 
   return (
     <div className="mt-4">
-      <h2>Daftar Produk</h2>
+      <h2>Product List</h2>
       <table className="table table-bordered">
         {/* Mengubah warna header tabel menjadi biru */}
         <thead className="table-primary">
           <tr>
-            <th>Nama Produk</th>
-            <th>Harga</th>
-            <th>Aksi</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
