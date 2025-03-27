@@ -8,7 +8,6 @@ function ProdukList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({ nama: "", harga: "" });
 
-  // Mengambil data produk dari backend saat komponen dimuat
   useEffect(() => {
     axios
       .get("http://localhost:3001/produk")
@@ -16,7 +15,6 @@ function ProdukList() {
       .catch(() => toast.error("Gagal mengambil data produk!"));
   }, []);
 
-  // Fungsi untuk menghapus produk
   const handleDelete = (id) => {
     if (!window.confirm("Apakah Anda yakin ingin menghapus produk ini?")) return;
 
@@ -29,19 +27,16 @@ function ProdukList() {
       .catch(() => toast.error("Gagal menghapus produk!"));
   };
 
-  // Membuka modal edit dan menyimpan produk yang dipilih
   const openEditModal = (product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
   };
 
-  // Menutup modal edit
   const closeEditModal = () => {
     setIsModalOpen(false);
     setSelectedProduct({ nama: "", harga: "" });
   };
 
-  // Menangani proses edit produk
   const handleEdit = (e) => {
     e.preventDefault();
 
@@ -65,41 +60,43 @@ function ProdukList() {
 
   return (
     <div className="mt-4">
-      <h2>Product List</h2>
-      <table className="table table-bordered">
-        {/* Mengubah warna header tabel menjadi biru */}
-        <thead className="table-primary">
-          <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {produk.map((item) => (
-            <tr key={item.id}>
-              <td>{item.nama}</td>
-              <td>Rp{item.harga}</td>
-              <td>
-                <button
-                  className="btn btn-primary btn-sm me-2"
-                  onClick={() => openEditModal(item)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => handleDelete(item.id)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="card p-3 shadow-sm">
+        <h2 className="mb-3 text-center">Product List</h2>
+        <div className="table-responsive">
+          <table className="table table-bordered">
+            <thead className="table-primary text-center">
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {produk.map((item) => (
+                <tr key={item.id}>
+                  <td className="align-middle">{item.nama}</td>
+                  <td className="align-middle">Rp{item.harga}</td>
+                  <td className="text-center">
+                    <button
+                      className="btn btn-primary btn-sm me-2"
+                      onClick={() => openEditModal(item)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => handleDelete(item.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-      {/* Modal Edit Produk */}
       {isModalOpen && (
         <div className="modal fade show d-block" style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
           <div className="modal-dialog">
