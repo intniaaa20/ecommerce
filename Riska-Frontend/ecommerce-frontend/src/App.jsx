@@ -16,7 +16,7 @@ function App() {
         <div className="container">
           <h2 className="logo">Intaristaurant</h2>
           <ul className="menu">
-            {["Admin Panel", "Home", "About", "Order Now", "Contact"].map((menu) => (
+            {["Home", "About", "Order Now", "Contact", "Admin Panel"].map((menu) => (
               <li key={menu}>
                 <a
                   href="#"
