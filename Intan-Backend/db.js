@@ -4,7 +4,7 @@
   user: 'postgres',
   host: 'localhost',
   database: 'ecommerce-proweb',
-  password: 'JANGANLUPALAGI20',
+  password: 'postgres',
   port: 5432,
  });
  module.exports = pool;
